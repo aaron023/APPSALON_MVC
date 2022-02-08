@@ -21,16 +21,24 @@ class Email {
         // Crear el objeto de Email
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'smtp.mailtrap.io';
+        // $mail->Host = 'smtp.mailtrap.io';
+        // $mail->SMTPAuth = true;
+        // $mail->Username = '4e80fa1d917bf9';
+        // $mail->Password = '75a0afdfb981bc';
+        // $mail->SMTPSecure = 'tls';
+        // $mail->Port = 2525;
+        $mail->Host = 'correo.marcatel.net';
         $mail->SMTPAuth = true;
-        $mail->Username = '4e80fa1d917bf9';
-        $mail->Password = '75a0afdfb981bc';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 2525;
+        $mail->Username = 'aacarrizales@marcatel.net';
+        $mail->Password = 'Cara851023';
+        //$mail->SMTPSecure = 'tls';
+        $mail->Port = 25;
+        $mail->IsSMTP();
+        $mail->SMTPDebug = 1;
 
-        $mail->setFrom('cuentas@appsalon.com');
-        $mail->addAddress('cuentas@appsalon.com', 'AppSalon.com');
-        $mail->Subject = 'Confirma tu cuenta';
+        $mail->setFrom('aacarrizales@marcatel.net');
+        $mail->addAddress($this->email, 'AppSalon.com');
+        $mail->Subject = 'Reestablece tu password';
 
         // Set HTML
         $mail->isHtml(true);
@@ -38,7 +46,7 @@ class Email {
 
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola " . $this->nombre . "</strong> Has creado tu cuenta en AppSalon, solo debes confirmarla presionando el siguiente enlace </p>";
-        $contenido .= "<p>Presiona aquí: <a href='http://localhost:3000/confirmar-cuenta?token=" . $this->token ."'>Confirmar cuenta</a></p>";
+        $contenido .= "<p>Presiona aquí: <a href='https://intense-savannah-07081.herokuapp.com/confirmar-cuenta?token=" . $this->token ."'>Confirmar cuenta</a></p>";
         $contenido .= "<p>Si tu no solicitaste esta cuenta, puedes ignorar el mensaje</p>";
         $contenido .= "</html>";
 
@@ -46,21 +54,37 @@ class Email {
 
         // Enviar el Email
         $mail->send();
+
+        // if(!$mail->Send()) {
+        //     echo "Mailer Error: " . $mail->ErrorInfo;
+        //  } else {
+        //     echo "Message has been sent";
+        //  }
+
+
     }
 
     public function enviarInstrucciones() {
         // Crear el objeto de Email
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'smtp.mailtrap.io';
+        // $mail->Host = 'smtp.mailtrap.io';
+        // $mail->SMTPAuth = true;
+        // $mail->Username = '4e80fa1d917bf9';
+        // $mail->Password = '75a0afdfb981bc';
+        // $mail->SMTPSecure = 'tls';
+        // $mail->Port = 2525;
+        $mail->Host = 'correo.marcatel.net';
         $mail->SMTPAuth = true;
-        $mail->Username = '4e80fa1d917bf9';
-        $mail->Password = '75a0afdfb981bc';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 2525;
+        $mail->Username = 'aacarrizales@marcatel.net';
+        $mail->Password = 'Cara851023';
+        //$mail->SMTPSecure = 'tls';
+        $mail->Port = 25;
+        $mail->IsSMTP();
+        $mail->SMTPDebug = 1;
 
-        $mail->setFrom('cuentas@appsalon.com');
-        $mail->addAddress('cuentas@appsalon.com', 'AppSalon.com');
+        $mail->setFrom('aacarrizales@marcatel.net');
+        $mail->addAddress($this->email, 'AppSalon.com');
         $mail->Subject = 'Reestablece tu password';
 
         // Set HTML
@@ -69,7 +93,7 @@ class Email {
 
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola " . $this->nombre . "</strong> Has solicitado reestablecer tu password, sigue el siguiente enlace para hacerlo</p>";
-        $contenido .= "<p>Presiona aquí: <a href='http://localhost:3000/recuperar?token=" . $this->token ."'>Reestablecer password</a></p>";
+        $contenido .= "<p>Presiona aquí: <a href='https://intense-savannah-07081.herokuapp.com/recuperar?token=" . $this->token ."'>Reestablecer password</a></p>";
         $contenido .= "<p>Si tu no solicitaste esta cuenta, puedes ignorar el mensaje</p>";
         $contenido .= "</html>";
 
